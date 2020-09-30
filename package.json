@@ -1,23 +1,48 @@
 {
   "name": "lego-components",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "dist/lego-components.umd.js",
+  "module": "dist/lego-components.esm.js",
+  "description": "Lego Vue3 components library",
+  "author": "Viking Zhang",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "Vue"
+  ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "npm run build:es && npm run build:umd",
+    "lint": "vue-cli-service lint",
+    "build:es": "rollup --config build/rollup.esm.config.js",
+    "build:umd": "rollup --config build/rollup.umd.config.js"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "lodash-es": "^4.17.15"
+  },
+  "peerDependencies": {
     "vue": "^3.0.0-0"
   },
   "devDependencies": {
+    "vue": "^3.0.0-0",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0-0",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "eslint-plugin-vue": "^7.0.0-0",
+    "rollup": "^2.28.2",
+    "rollup-plugin-css-only": "^2.1.0",
+    "rollup-plugin-vue": "^6.0.0-beta.10"
   }
 }
