@@ -2,7 +2,7 @@
 // import { nodeResolve } from '@rollup/plugin-node-resolve'
 // import vue from 'rollup-plugin-vue'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-// import typescript from '@rollup/plugin-typescript'
+import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle"
 // import cjs from '@rollup/plugin-commonjs'
 // import replace from '@rollup/plugin-replace'
 import css from 'rollup-plugin-css-only'
@@ -25,7 +25,7 @@ export default {
   },
   plugins: [
     nodeResolve(),
-    // typescript(),
+    excludeDependenciesFromBundle({ peerDependencies: true, dependencies: false }),
     css({
       output(style) {
         !fs.existsSync('dist') && fs.mkdirSync('dist')
