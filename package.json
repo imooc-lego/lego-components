@@ -1,6 +1,6 @@
 {
   "name": "lego-components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "dist/lego-components.umd.js",
   "module": "dist/lego-components.esm.js",
