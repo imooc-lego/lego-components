@@ -1,6 +1,6 @@
 import LText from './LText.vue'
 
-LText.install = function(app) {
+LText.install = (app: any) => {
   app.component(LText.name, LText)
 }
 

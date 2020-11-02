@@ -9,7 +9,7 @@ const components = [
   FinalPage
 ]
 
-const install = function(app) { 
+const install = (app: any) => { 
   components.map(component => {
     app.use(component)
   })

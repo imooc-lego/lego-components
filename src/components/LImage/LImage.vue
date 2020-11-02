@@ -5,7 +5,7 @@
     :draggable="false"
   />
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import useStylePick from '../../hooks/useStylePick'
 import { componentsDefaultProps, transformToComponentProps } from '../../defaultProps'

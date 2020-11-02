@@ -1,6 +1,6 @@
 import FinalPage from './FinalPage.vue'
 
-FinalPage.install = function(app) {
+FinalPage.install = (app: any) => {
   app.component(FinalPage.name, FinalPage)
 }
 

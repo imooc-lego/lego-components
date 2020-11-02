@@ -1,6 +1,6 @@
 import LImage from './LImage.vue'
 
-LImage.install = function(app) {
+LImage.install = (app: any) => {
   app.component(LImage.name, LImage)
 }
 

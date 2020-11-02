@@ -2,7 +2,7 @@
   <div @click.prevent="handleClick" :style="styleProps" class="l-shape-component" :draggable="false">
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import useStylePick from '../../hooks/useStylePick'
 import { componentsDefaultProps, transformToComponentProps } from '../../defaultProps'

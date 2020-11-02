@@ -1,6 +1,6 @@
 import LShape from './LShape.vue'
 
-LShape.install = function(app) {
+LShape.install = (app: any) => {
   app.component(LShape.name, LShape)
 }
 
