@@ -6,12 +6,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import useStylePick from '../../hooks/useStylePick'
-import { componentsDefaultProps, transformToComponentProps } from '../../defaultProps'
-const defaultProps = transformToComponentProps(componentsDefaultProps['l-text'].props)
-defaultProps.tag = {
-  type: String,
-  default: 'p'
+import useComponentClick from '../../hooks/useComponentClick'
+import { componentsDefaultProps, transformToComponentProps, isEditingProp } from '../../defaultProps'
+const extraProps = {
+  tag: {
+    type: String,
+    default: 'p'    
+  },
+  ...isEditingProp
 }
+const defaultProps = transformToComponentProps(componentsDefaultProps['l-text'].props, extraProps)
+
 // array that contains style props
 export default defineComponent({
   name: 'l-text',
@@ -20,12 +25,7 @@ export default defineComponent({
   },
   setup (props) {
     const styleProps = useStylePick(props)
-    const handleClick = () => {
-      if (props.actionType && props.url) {
-        window.location.href = props.url
-      }
-    }
-
+    const handleClick = useComponentClick(props)
     return {
       styleProps,
       handleClick

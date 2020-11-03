@@ -8,19 +8,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import useStylePick from '../../hooks/useStylePick'
-import { componentsDefaultProps, transformToComponentProps } from '../../defaultProps'
+import useComponentClick from '../../hooks/useComponentClick'
+import { componentsDefaultProps, transformToComponentProps, isEditingProp } from '../../defaultProps'
 
 // array that contains style props
 export default defineComponent({
   name: 'l-image',
-  props: transformToComponentProps(componentsDefaultProps['l-image'].props),
+  props: transformToComponentProps(componentsDefaultProps['l-image'].props, isEditingProp),
   setup (props) {
     const styleProps = useStylePick(props)
-    const handleClick = () => {
-      if (props.actionType && props.url) {
-        window.location.href = props.url
-      }
-    }
+    const handleClick = useComponentClick(props)
 
     return {
       styleProps,

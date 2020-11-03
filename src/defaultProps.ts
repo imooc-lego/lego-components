@@ -1,5 +1,31 @@
 import { mapValues } from 'lodash-es'
 
+export interface ComponentData {
+  props: { [key: string]: any };
+  id: string;
+  name: string;
+  layerName?: string;
+  isHidden?: boolean;
+  isLocked?: boolean;
+}
+
+export interface PageData {
+  props: { [key: string]: any };
+  setting: { [key: string]: any };
+  id?: number;
+  title?: string;
+  desc?: string;
+  coverImg?: string;
+  uuid?: string;
+  latestPublishAt?: string;
+  updatedAt?: string;
+  isTemplate?: boolean;
+  isHot?: boolean;
+  isNew?: boolean;
+  author?: string;
+  status?: string;
+}
+
 // the common default props, all the components should have these props
 export const commonDefaultProps = {
   // actions
@@ -28,6 +54,7 @@ export const commonDefaultProps = {
 }
 export const textDefaultProps = {
   // basic props - font styles
+  text: '正文内容',
   fontSize: '14px',
   fontFamily: '',
   fontWeight: 'normal',
@@ -44,35 +71,43 @@ export const imageDefaultProps = {
   imageSrc: '',
   ...commonDefaultProps
 }
+
+export const shapeDefaultProps = {
+  backgroundColor: '',
+  ...commonDefaultProps
+}
 // this contains all default props for all the components
 // useful for inserting new component into the store
 export const componentsDefaultProps = {
   'l-text': {
-    props: {
-      text: '正文内容',
-      ...textDefaultProps,
-      fontSize: '14px'
-    }
+    props: textDefaultProps
   },
   'l-image': {
-    props: {
-      ...imageDefaultProps
-    }
+    props: imageDefaultProps
   },
   'l-shape': {
-    props: {
-      backgroundColor: '',
-      ...commonDefaultProps
-    }
+    props: shapeDefaultProps
   }
 }
 
-export const transformToComponentProps = (props: { [key: string]: any }) => {
-  return mapValues(props, (item) => {
+export const isEditingProp = {
+  isEditing: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export const transformToComponentProps = (props: { [key: string]: any }, extraProps?: { [key: string]: any }) => {
+  const mapProps =  mapValues(props, (item) => {
     return {
       type: item.constructor,
       default: item
     }
   })
+  if (extraProps) {
+    return { ...mapProps, ...extraProps }
+  } else {
+    return mapProps
+  }
 }
 export default componentsDefaultProps
