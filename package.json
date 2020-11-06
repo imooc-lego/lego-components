@@ -22,7 +22,14 @@
     "lint": "vue-cli-service lint",
     "build:es": "rollup --config build/rollup.esm.config.js",
     "build:umd": "rollup --config build/rollup.umd.config.js",
-    "test:unit": "vue-cli-service test:unit --watch"
+    "test": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   },
   "dependencies": {
     "lodash-es": "^4.17.15"
